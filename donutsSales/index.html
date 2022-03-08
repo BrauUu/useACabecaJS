@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css"/>
+    <title>Duncan's</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="header">
+            <h1>Duncan's Just-In-Time Donuts</h1>
+            <h3 style="font-weight: 500;">All donuts 50 cents each, cake or glazed!</h3>
+        </div>
+        <div class="form">
+            <img src="./images/donuttime.png" />
+            <form>
+                <div class="name">
+                    <label>Name:</label>
+                    <input type="text" id="name"/>
+                </div>
+                <div class="#ofcakedonuts">
+                    <label># of cake donuts:</label>
+                    <input type="text" id="cakeDonuts" onkeyup="calcCakeDonuts()"/>
+                </div>
+                <div class="#ofglazeddonuts">
+                    <label># of glazed donuts:</label>
+                    <input type="text" id="glazedDonuts" onkeyup="calcCakeDonuts()"/>
+                </div>
+                <div class="minutes'tilpickup">
+                    <label>Minutes 'til pickup:</label>
+                    <input type="number" id="minutes"/>
+                </div>
+                <div class="subtotal">
+                    <label>Subtotal:</label>
+                    <input type="text" id="subtotal"/>
+                </div>
+                <div class="tax">
+                    <label>Tax:</label>
+                    <input type="text" id="tax"/>
+                </div>
+                <div class="total">
+                    <label>Total:</label>
+                    <input type="text" id="total"/>
+                </div>
+                <button type="button" onclick="submitOrder()">Place Order</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="./index.js">
+</script>
+
+</html>
