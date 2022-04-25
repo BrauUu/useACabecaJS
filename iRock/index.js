@@ -4,6 +4,7 @@ let sadCounter = 0;
 let isAngry = false;
 
 setInterval("withoutAnyInteraction()", 18000) 
+setTimeout("greetings()", 1000)
 
 function withoutAnyInteraction() {
   if (!isHappy) {
@@ -88,4 +89,10 @@ function isAngryPhases() {
       setIRockImage('./img/irock.png');
       break;
   }
+}
+
+function resizeIRock() {
+  let irock = document.getElementById('rockImg');
+  
+ irock.style.height = `50%`
 }
