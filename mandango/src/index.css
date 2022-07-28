@@ -9,6 +9,9 @@ body {
     justify-content: center;
 
     height: 100vh;
+
+    background: rgb(46,42,69);
+    background: linear-gradient(180deg, rgba(46,42,69,1) 0%, rgba(51,47,74,1) 85%, rgba(105,105,105,1) 100%);
 }
 
 #seats-div > img {

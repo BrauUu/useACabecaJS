@@ -1,9 +1,9 @@
 const seats = [
-    [true, false, true, true, false],
-    [false, false, false, true, false],
-    [true, false, true, true, false],
-    [false, true, true, false, true],
-    [true, false, false, false, true]
+    [true, false, true, true, false, false, false],
+    [false, false, false, true, false, true, true],
+    [true, false, true, true, false, true, false],
+    [false, true, true, false, true, false, true],
+    [true, false, false, false, true, true, false]
 ]
 
 const seatsDiv = document.querySelector('#seats-div')
@@ -22,21 +22,20 @@ function initializeSeats() {
     }
 }
 
-//const friendsNumber = prompt("Quantos amigos há no grupo?")
-
 function findMachoSeats() {
     for (let i = 0; i < seats.length; i++) {
         for (let j = 0; j < seats[i].length; j++) {
             if (seats[i][j] == false && seats[i][j + 1] == false && seats[i][j + 2] == false) {
-                let response;
-                response = confirm(`As cadeiras na posição ${i}-${j} até ${i}-${j + 2} estão disponíveis. Gostaria de reservalas?`)
+
+                const response = confirm(`As cadeiras da fila ${i + 1} posição ${j + 1} a ${j + 3} estão disponíveis. Gostaria de reservar?`)
 
                 if (response) {
                     for (let x = j; x <= j + 2; x++) {
                         const selectedSeat = document.querySelector(`#seat-${i}-${x}`)
                         selectedSeat.src = './images/seat-selected.png'
-                        selectedSeat.alt = 'Selecionada'
+                        selectedSeat.alt = 'Reservada'
                     }
+
                     return
                 }
                 else {
@@ -49,4 +48,6 @@ function findMachoSeats() {
             }
         }
     }
+    
+    alert('Desculpe, não temos mais cadeiras disponíveis.')
 }
