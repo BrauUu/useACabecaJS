@@ -11,14 +11,32 @@ initializeSeats()
 
 function initializeSeats() {
     for (let i = 0; i < seats.length; i++) {
+        const div = document.createElement("div")
+        div.id = `seat-collum-${i}`
+        seatsDiv.appendChild(div)
+        const divCollum = document.querySelector(`#seat-collum-${i}`)
+        
         for (let j = 0; j < seats[i].length; j++) {
+            const div = document.createElement("div")
             const img = document.createElement("img")
+            const span = document.createElement("span")
+
+            div.id = `seat-${i}-${j}-div`
+
             img.id = `seat-${i}-${j}`
             img.src = seats[i][j] ? './images/seat-unavailable.png' : './images/seat-available.png'
             img.alt = seats[i][j] ? 'Indisponível' : 'Disponível'
-            seatsDiv.appendChild(img)
+
+            span.id = `seat-${i}-${j}-tooltip`
+            span.textContent = seats[i][j] ? 'Indisponível' : 'Disponível'
+
+            divCollum.appendChild(div)
+
+            const actualSeatDiv = document.querySelector(`#seat-${i}-${j}-div`)
+
+            actualSeatDiv.appendChild(span)
+            actualSeatDiv.appendChild(img)
         }
-        seatsDiv.appendChild(document.createElement('br'))
     }
 }
 
@@ -34,6 +52,10 @@ function findMachoSeats() {
                         const selectedSeat = document.querySelector(`#seat-${i}-${x}`)
                         selectedSeat.src = './images/seat-selected.png'
                         selectedSeat.alt = 'Reservada'
+
+                        const selectedSeatTooltip = document.querySelector(`#seat-${i}-${x}-div > span`)
+                        selectedSeatTooltip.textContent = 'Reservada'
+
                     }
 
                     return
@@ -48,6 +70,6 @@ function findMachoSeats() {
             }
         }
     }
-    
+
     alert('Desculpe, não temos mais cadeiras disponíveis.')
 }
