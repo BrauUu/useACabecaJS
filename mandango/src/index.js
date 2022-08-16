@@ -7,7 +7,7 @@ const seats = [
 ]
 
 const seatsDiv = document.querySelector('#seats-div')
-initializeSeats()
+window.onload(initializeSeats())
 
 function initializeSeats() {
     for (let i = 0; i < seats.length; i++) {
@@ -15,7 +15,7 @@ function initializeSeats() {
         div.id = `seat-collum-${i}`
         seatsDiv.appendChild(div)
         const divCollum = document.querySelector(`#seat-collum-${i}`)
-        
+
         for (let j = 0; j < seats[i].length; j++) {
             const div = document.createElement("div")
             const img = document.createElement("img")
@@ -31,7 +31,6 @@ function initializeSeats() {
             span.textContent = seats[i][j] ? 'Indisponível' : 'Disponível'
 
             divCollum.appendChild(div)
-
             const actualSeatDiv = document.querySelector(`#seat-${i}-${j}-div`)
 
             actualSeatDiv.appendChild(span)
@@ -49,27 +48,27 @@ function findMachoSeats() {
 
                 if (response) {
                     for (let x = j; x <= j + 2; x++) {
-                        const selectedSeat = document.querySelector(`#seat-${i}-${x}`)
-                        selectedSeat.src = './images/seat-selected.png'
-                        selectedSeat.alt = 'Reservada'
-
-                        const selectedSeatTooltip = document.querySelector(`#seat-${i}-${x}-div > span`)
-                        selectedSeatTooltip.textContent = 'Reservada'
-
+                        reserveSeats(i, x)
                     }
 
-                    return
-                }
-                else {
-                    for (let x = j; x <= j + 2; x++) {
-                        const selectedSeat = document.querySelector(`#seat-${i}-${x}`)
-                        selectedSeat.src = './images/seat-available.png'
-                        selectedSeat.alt = 'Disponível'
-                    }
+                    return;
                 }
             }
         }
     }
 
     alert('Desculpe, não temos mais cadeiras disponíveis.')
+}
+
+function reserveSeats( axisX, axisY) {
+
+        seats[axisX][axisY] = true;
+
+        const selectedSeat = document.querySelector(`#seat-${axisX}-${axisY}`)
+        selectedSeat.src = './images/seat-selected.png'
+        selectedSeat.alt = 'Reservada'
+
+        const selectedSeatTooltip = document.querySelector(`#seat-${axisX}-${axisY}-div > span`)
+        selectedSeatTooltip.textContent = 'Reservada'
+
 }

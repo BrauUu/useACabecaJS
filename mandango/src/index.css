@@ -1,3 +1,11 @@
+:root {
+    --purple-light: rgb(58, 53, 83);
+    --purple-dark: rgb(51, 47, 74);
+    --gray:  rgb(105, 105, 105);
+    --white: rgb(235, 232, 232);
+    --tooltip-background: rgba(105, 105, 105, 0.7);
+}
+
 * {
     margin: 0;
 }
@@ -10,7 +18,7 @@ body {
 
     min-height: 100vh;
 
-    background: linear-gradient(180deg, rgba(46, 42, 69, 1) 0%, rgba(51, 47, 74, 1) 85%, rgba(105, 105, 105, 1) 100%);
+    background: linear-gradient(180deg, var(--purple-light) 0%, var(--purple-dark) 85%, var(--gray) 100%);
 }
 
 #seats-div {
@@ -23,14 +31,27 @@ body {
     flex-direction: row; 
 }
 
+#seats-div > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+}
+
 #seats-div > div > div > img {
-    width: 100px;
+    width: 80px;
    
 }
 
 #find-seats {
     margin-top: 40px;
     padding: 10px 15px;
+    border-radius: 10px;
+
+    color: var(--white);
+    background: var(--purple-light);
+    border: 1px solid var(--white);
 }
 
 #seats-div > div > div > span {
@@ -39,10 +60,12 @@ body {
 
     font-size: 12px;
     padding: 5px;
-    background: rgba(105, 105, 105, 0.7);
-    color: #000;
+    background: var(--tooltip-background);
+    color: var(--white);
     border-radius: 10px;
-    margin-left: 7px;
+
+    margin-top: -80px;
+    
 }
 
 #seats-div > div > div:hover span {
