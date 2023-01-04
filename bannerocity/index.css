@@ -1,0 +1,39 @@
+* {
+    margin: auto;
+    font-size: large;
+}
+#banner {
+    background-image: url('./assets/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px;
+    height: 250px;
+    width: 100%;
+    
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+#form-div > [id *= "row"] {
+    padding-top: 10px;
+}
+
+[id *= "_help"]{
+    color: red;
+}
+
+#button-div {
+    display: flex;
+    justify-content: center;
+}
+
+#send {
+    margin-top: 15px;
+    padding: 10px 40px;
+    font-size: larger;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="index.js"></script>
+    <title>Bannerocity</title>
+</head>
+
+<body>
+    <div id="banner"></div>
+    <form id="form">
+        <div id="form-div">
+            <div id="row-1">
+                <label for="message">Insira a mensagem do banner:</label>
+                <input type="text" minlength="1" maxlength="32" name="message" onblur="validateLength(this, 1, 32)"
+                    placeholder="Amanda eu te amo!" />
+                <span id="message_help"></span>
+            </div>
+            <div id="row-2">
+                <label for="cep">Insira o CEP:</label>
+                <input type="text" name="cep" onblur="validateCEP(this)" placeholder="38702-174" />
+                <span id="cep_help"></span>
+            </div>
+            <div id="row-3">
+                <label for="date">Insira o data de exibição:</label>
+                <input type="text" name="date" onblur="validateDate(this)" placeholder="14/02/2023">
+                <span id="date_help"></span>
+            </div>
+            <div id="row-4">
+                <label for="name">Insira seu nome:</label>
+                <input type="text" name="name" onblur="validateLength(this)" placeholder="Brayan" />
+                <span id="name_help"></span>
+            </div>
+            <div id="row-5">
+                <label for="phone">Insira seu telefone:</label>
+                <input type="text" name="phone" onblur="validatePhone(this)" placeholder="34 999999999" />
+                <span id="phone_help"></span>
+            </div>
+            <div id="row-6">
+                <label for="email">Insira seu email:</label>
+                <input type="email" name="email" onblur="validateEmail(this)" placeholder="example@email.com" />
+                <span id="email_help"></span>
+            </div>
+            <div id="button-div">
+                <input id="send" type="button" onclick="validateSubmit(this.form)" value="Enviar"></input>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
