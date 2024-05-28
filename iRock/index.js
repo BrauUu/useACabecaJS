@@ -3,20 +3,31 @@ let myName = readCookie("username") || undefined
 let sadCounter = 0;
 let isAngry = false;
 
+const PHRASES = ['Tá quente hoje, né?', 'Olha essas nuvens, tá uma cara de chuva!', 'Como é que está sua mãe?', 'E as namoradinhas?', 'OPA!!']
+
+const MIN = 0
+const MAX = PHRASES.length
+
 setInterval("withoutInteraction()", 18000)
-setTimeout("greetings()", 100)
+setTimeout("greetings()", 500)
 
 function withoutInteraction() {
   if (!isHappy) {
     if (!isAngry && sadCounter < 3) {
-      window.alert(`Oi, alguém por aí?`)
+      if (myName) {
+        window.alert(`${myName}, você ainda está por aqui?`)
+      }
+      else {
+        window.alert(`Oie, tem alguém por aqui?`)
+      }
       sadCounter++
       if (sadCounter == 3) {
         setIRockImage("./img/irock-sad.png")
       }
+      return
     }
-    else if (!isAngry && myName) {
-      window.alert(`Todos sempre abandonam o IRock`)
+    if (!isAngry && myName) {
+      window.alert(`Todos sempre acabam abandonando o iRock!`)
       setIRockImage('./img/irock-angry.png')
       isAngry = true;
     }
@@ -24,7 +35,14 @@ function withoutInteraction() {
 }
 
 function greetings() {
-  window.alert('Olá, eu sou o iRock!')
+
+  if (!myName) {
+    window.alert('Olá, meu nome é iRock! Fique a vontade para interagir comigo!')
+    return
+  }
+  window.alert(`Olá ${myName}, que bom te ver novamente!`)
+  happyIRock()
+  return
 }
 
 function touchRock() {
@@ -37,23 +55,22 @@ function touchRock() {
   sadCounter = 0;
 
   if (!isHappy && !myName) {
-    myName = window.prompt('Olá, finalmente alguém. Qual é o seu nome?')
-    writeCookie("username", myName, 2)
+    myName = window.prompt('Olá, finalmente alguém apareceu. Qual é o seu nome?')
     if (!myName) {
       return
     }
+    writeCookie("username", myName, 2)
 
     window.alert(`É um prazer te conhecer, ${myName}!`)
     happyIRock()
+    return
   }
-  else if (!isHappy) {
-    window.alert(`${myName}, que bom te ver aqui novamente!`)
+  if (!isHappy && myName) {
+    window.alert(`Sua presença sempre me deixa feliz!`)
     happyIRock()
+    return
   }
-  else {
-    window.alert(`Como vai, amigo?`)
-  }
-
+  chat()
 }
 
 function setIRockImage(src) {
@@ -63,33 +80,38 @@ function setIRockImage(src) {
 }
 
 function happyIRock() {
-  isHappy = true;
+  if (!isHappy) {
+    isHappy = true;
 
-  setIRockImage('./img/irock-smile.png')
+    setIRockImage('./img/irock-smile.png')
 
-  const timer = setTimeout(() => {
-    setIRockImage('./img/irock.png');
-    isHappy = false
-  }, 9000)
+    const timer = setTimeout(() => {
+      setIRockImage('./img/irock.png');
+      isHappy = false
+    }, 9000)
+  }
+}
+
+function chat() {
+  message = PHRASES[Math.floor(Math.random() * (MAX - MIN) + MIN)]
+  window.alert(message)
 }
 
 function isAngryPhases() {
   switch (sadCounter) {
     case 3:
-      window.alert(`Não quero conversar com você! Você me abandonou!`)
-      sadCounter--;
+      window.alert(`Não quero conversar com você ${myName}! Você me abandonou!`)
       break;
     case 2:
-      window.alert(`${myName} ainda continua aqui? Vá embora!`)
-      sadCounter--;
+      window.alert(`${myName} ainda está aqui? Vá embora!`)
       break;
     case 1:
-      window.alert(`Tudo bem, eu posso te perdoar!`)
-      sadCounter--;
+      window.alert(`Tudo bem, já que insiste, eu posso te perdoar ${myName}!`)
       isAngry = false;
       setIRockImage('./img/irock.png');
       break;
   }
+  sadCounter--;
 }
 
 function resizeIRock() {
