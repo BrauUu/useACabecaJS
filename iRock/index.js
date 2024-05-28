@@ -3,15 +3,30 @@ let myName = readCookie("username") || undefined
 let sadCounter = 0;
 let isAngry = false;
 
-const PHRASES = ['Tá quente hoje, né?', 'Olha essas nuvens, tá uma cara de chuva!', 'Como é que está sua mãe?', 'E as namoradinhas?', 'OPA!!']
+const PHRASES = ['Tá quente hoje, né?', 'Olha essas nuvens, tá uma cara de chuva!', 'Como é que está sua mãe?', 'E as namoradinhas?', 'OPA!!', 'Vontade de comer um churras hoje!']
 
 const MIN = 0
 const MAX = PHRASES.length
 
-setInterval("withoutInteraction()", 18000)
+const iRock = document.querySelector('#rockImgDiv')
+
+iRock.addEventListener('click', async () => {
+  await touchRock()
+})
+
+asyncSetInterval(async () => {
+  await withoutInteraction()
+}, 10000);
+
 setTimeout("greetings()", 500)
 
-function withoutInteraction() {
+async function asyncSetInterval(callback, interval) {
+  await new Promise(resolve => setTimeout(resolve, interval));
+  await callback();
+  await asyncSetInterval(callback, interval);
+}
+
+async function withoutInteraction() {
   if (!isHappy) {
     if (!isAngry && sadCounter < 3) {
       if (myName) {
@@ -34,18 +49,18 @@ function withoutInteraction() {
   }
 }
 
-function greetings() {
+async function greetings() {
 
   if (!myName) {
     window.alert('Olá, meu nome é iRock! Fique a vontade para interagir comigo!')
     return
   }
   window.alert(`Olá ${myName}, que bom te ver novamente!`)
-  happyIRock()
+  await happyIRock()
   return
 }
 
-function touchRock() {
+async function touchRock() {
 
   if (isAngry) {
     isAngryPhases()
@@ -59,36 +74,35 @@ function touchRock() {
     if (!myName) {
       return
     }
-    writeCookie("username", myName, 2)
+    writeCookie("username", myName, 1)
 
     window.alert(`É um prazer te conhecer, ${myName}!`)
-    happyIRock()
+    await happyIRock()
     return
   }
   if (!isHappy && myName) {
     window.alert(`Sua presença sempre me deixa feliz!`)
-    happyIRock()
+    await happyIRock()
     return
   }
   chat()
 }
 
 function setIRockImage(src) {
-
   const img = document.getElementById('rockImg')
   img.src = src
 }
 
-function happyIRock() {
+async function happyIRock() {
   if (!isHappy) {
     isHappy = true;
 
     setIRockImage('./img/irock-smile.png')
 
-    const timer = setTimeout(() => {
+    await new Promise(resolve => setTimeout(() => {
       setIRockImage('./img/irock.png');
       isHappy = false
-    }, 9000)
+    }, 10000))
   }
 }
 
